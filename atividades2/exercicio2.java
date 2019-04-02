@@ -42,9 +42,6 @@ class HelloThread2 extends Thread {;
 //              espera 10 segundos antes de continuar a execucao
                 Thread.sleep(10000);
                 linha = lerArq.readLine(); // lê da segunda até a última linha
-                if(Thread.interrupted()){
-                    break;
-                }
                 
             }
             } catch (FileNotFoundException ex) {
