@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author kaioe
+ * Exercicio 4: Faca um programa em Java que realize uma busca paralela
+*em um vetor de inteiros. Informe para o metodo: valor
+*procurado, vetor de inteiros e o numero de threads.
+ * @author Caio Nakai
  */
 public class at3_exer4 {
     public static void main(String[] args) throws InterruptedException {
