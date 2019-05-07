@@ -9,10 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Exercicio4: Faca um programa em Java que realize uma busca paralela
-em um vetor de inteiros. Informe para o metodo: valor
-procurado, vetor de inteiros e o numero de threads.
- * @author Caio Nakai
+ *
+ * @author kaioe
  */
 public class at3_exer4 {
     public static void main(String[] args) throws InterruptedException {
@@ -36,9 +34,9 @@ public class at3_exer4 {
         // cria threads e armazenam no vetor
         for(int i=1; i <= numThread; i++){
             if(i==1){ // caso incial
-                vetorThread.add(new BuscaValor(0, intervalo, resultado, valorProcurado, vetor));
+                vetorThread.add(new BuscaValor(0, intervalo, resultado, valorProcurado));
             }else{
-                vetorThread.add(new BuscaValor(intervalo*(i-1), intervalo*i, resultado, valorProcurado, vetor));
+                vetorThread.add(new BuscaValor(intervalo*(i-1), intervalo*i, resultado, valorProcurado));
             }
         }
         // starta as threads
@@ -56,21 +54,19 @@ public class at3_exer4 {
 class BuscaValor extends Thread {;
     int inicio, fim, valorProcurado;
     List<Integer> resultado;
-    List<Integer> dado; // vetor com os numeros
     
     @Override
     public void run(){        
         for(int i = inicio; i<=fim; i++){ // for que percorre todo o intervalo
-           if(dado.get(i) == valorProcurado){
+           if(i == valorProcurado){
                resultado.add(i);
            }
         }
     }
-    public BuscaValor(int inicio, int fim, List<Integer> resultado, int valorProcurado, List<Integer> dado){
+    public BuscaValor(int inicio, int fim, List<Integer> resultado, int valorProcurado){
         this.inicio = inicio;
         this.fim = fim;
         this.resultado = resultado;
         this.valorProcurado = valorProcurado;
-        this.dado = dado;
     }
 }
