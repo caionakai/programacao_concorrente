@@ -46,11 +46,7 @@ class ReaderWriter {
         mutex.release();
     }
     public void startWrite() throws InterruptedException{
-        mutex.acquire();
-        if(numReaders == 0){
-            wlock.acquire();
-        }
-        mutex.release();
+         wlock.acquire();
     }
     public void endWrite(){
         wlock.release();
@@ -61,28 +57,19 @@ class ReaderWriter {
 // Sem Starvation
 
 class ReaderWriter {
-    Semaphore mutex = new Semaphore(1);
     Semaphore wlock = new Semaphore(1);
     
     public void startRead() throws InterruptedException{
-        mutex.acquire();
         wlock.acquire();
-        mutex.release();
     }
     public void endRead() throws InterruptedException{
-        mutex.acquire();
         wlock.release();
-        mutex.release();
     }
     public void startWrite() throws InterruptedException{
-        mutex.acquire();
         wlock.acquire();
-        mutex.release();
     }
     public void endWrite() throws InterruptedException{
-        mutex.acquire();
         wlock.release();
-        mutex.release();
     }    
 }
 
@@ -112,16 +99,16 @@ class ReaderWriter {
     public void startWrite() throws InterruptedException{
         mutex.acquire();
         numWriters++;
-        if(numReaders == 0){
-            wlock.acquire();
-        }
         mutex.release();
+        wlock.acquire();
+        
     }
     public void endWrite() throws InterruptedException{
         mutex.acquire();
         numWriters--;
-        wlock.release();
         mutex.release();
+        wlock.release();
+
     }    
 }
 */
